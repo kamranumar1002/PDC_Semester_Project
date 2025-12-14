@@ -31,7 +31,8 @@ Open your terminal (Command Prompt, PowerShell, or Git Bash) and run this comman
 
 ```bash
 git clone [URL_OF_YOUR_GITHUB_REPOSITORY]
-cd pdc_project # Or whatever your root folder is called```
+cd pdc_project # Or whatever your root folder is called
+```
 
 ### Step 2: Backend Setup (The "Brain")
 
