@@ -53,16 +53,17 @@ def process_file_task(input_path, output_root, original_file_id):
         simulate_heavy_computation(duration=3.0) 
         print(f"File {original_file_id}: Deep Analysis Complete.")
 
-        # 4. Generate metadata path
-        spectrogram_path = os.path.join(full_output_dir, f"{base_name}_mel_spectrogram.npy")
+        # 4. Generate relative paths for frontend (media/processed/...)
+        relative_processed_path = os.path.join(relative_path, os.path.basename(final_output_path))
+        relative_spectrogram_path = os.path.join(relative_path, f"{base_name}_mel_spectrogram.npy")
         
         duration = time.time() - start_time
         
         return {
             "success": True,
             "original_id": original_file_id,
-            "processed_path": final_output_path, 
-            "spectrogram_path": spectrogram_path if os.path.exists(spectrogram_path) else None,
+            "processed_path": relative_processed_path, 
+            "spectrogram_path": relative_spectrogram_path if os.path.exists(os.path.join(full_output_dir, f"{base_name}_mel_spectrogram.npy")) else None,
             "duration": duration,
             "relative_dir": relative_path 
         }

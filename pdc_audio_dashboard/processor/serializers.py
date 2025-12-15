@@ -13,9 +13,12 @@ class AudioBatchSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'created_at', 'files']
 
 class ProcessedResultSerializer(serializers.ModelSerializer):
+    processed_file = serializers.FileField(use_url=True)
+    # Add this line so we can play the original input:
+    original_file_url = serializers.FileField(source='original_file.file', use_url=True, read_only=True) 
     class Meta:
         model = ProcessedResult
-        fields = ['id', 'processed_file', 'spectrogram_path', 'processing_time_ms']
+        fields = ['id', 'processed_file', 'original_file_url', 'spectrogram_path', 'processing_time_ms']
 
 class ExperimentSerializer(serializers.ModelSerializer):
     results = ProcessedResultSerializer(many=True, read_only=True)
